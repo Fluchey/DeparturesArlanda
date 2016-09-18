@@ -9,6 +9,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.lang.reflect.Type;
@@ -18,16 +19,24 @@ import com.google.gson.*;
 public class DeparturesArlanda {
 
 	public static void main(String[] args) throws Exception {
-		String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		String json = readUrl("http://www.swedavia.se/services/publicflightsboard/departures/language/sv/iata/ARN/date/"
-				+ date + "/");
-		System.out.println(json);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String todaysDate = sdf.format(new Date());
+		Calendar c = Calendar.getInstance();
+		c.setTime(sdf.parse(todaysDate));
+		c.add(Calendar.DATE, 1);
+		String tomorrowsDate = sdf.format(c.getTime());
+		
+		String jsonToday = readUrl("http://www.swedavia.se/services/publicflightsboard/departures/language/sv/iata/ARN/date/"
+				+ todaysDate + "/");
+		String jsonTomorrow = readUrl("http://www.swedavia.se/services/publicflightsboard/departures/language/sv/iata/ARN/date/"
+				+ tomorrowsDate + "/");
+		
 		Gson gson = new Gson();
 		ArrayList jsonObjList = new ArrayList();
 
 		try {
 			JsonParser jsonParser = new JsonParser();
-			JsonObject jo = (JsonObject) jsonParser.parse(json);
+			JsonObject jo = (JsonObject) jsonParser.parse(jsonToday);
 			JsonArray jsonArr = jo.getAsJsonArray("Flights");
 			jsonObjList = gson.fromJson(jsonArr, ArrayList.class);
 
@@ -51,9 +60,9 @@ public class DeparturesArlanda {
 			
 			try{
 				String actualTime = new SimpleDateFormat("HH:mm").format(new Date());
-				SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-				Date thisTime = sdf.parse(actualTime);
-				Date compareTime = sdf.parse(probableFlightTime);
+				SimpleDateFormat stf = new SimpleDateFormat("HH:mm");
+				Date thisTime = stf.parse(actualTime);
+				Date compareTime = stf.parse(probableFlightTime);
 				if(compareTime.after(thisTime)){
 					upcomingFlights.add(flight);
 				}

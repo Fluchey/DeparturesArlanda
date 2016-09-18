@@ -27,7 +27,7 @@ public class NorthPanel extends JPanel {
 		destination = new JLabel("Destination");
 		destination.setFont(bigLabelFont);
 
-		departureTime = new JLabel("AvgÂng");
+		departureTime = new JLabel("Avg√•ng");
 		departureTime.setFont(bigLabelFont);
 
 		airline = new JLabel("Flygbolag");
@@ -45,15 +45,15 @@ public class NorthPanel extends JPanel {
 		m.setConstraints(destination, con);
 		northPanel.add(destination);
 
-		con.gridx = 1;
+		con.gridx = 5;
 		m.setConstraints(departureTime, con);
 		northPanel.add(departureTime);
 
-		con.gridx = 2;
+		con.gridx = 10;
 		m.setConstraints(airline, con);
 		northPanel.add(airline);
 
-		con.gridx = 3;
+		con.gridx = 15;
 		m.setConstraints(terminal, con);
 		northPanel.add(terminal);
 
@@ -69,7 +69,7 @@ public class NorthPanel extends JPanel {
 				flightDepartureTime.setOpaque(true);
 				flightAirline.setOpaque(true);
 				flightTerminal.setOpaque(true);
-				if((i&1) == 0){
+				if ((i & 1) == 0) {
 					Color customColor = new Color(148, 148, 184);
 					flightDestination.setBackground(customColor);
 					flightDepartureTime.setBackground(customColor);
@@ -87,23 +87,23 @@ public class NorthPanel extends JPanel {
 
 				flightDepartureTime.setText(flights.get(i).getProbableFlightTime());
 				flightDepartureTime.setFont(flightFont);
-				con.gridx = 1;
+				con.gridx = 5;
 				m.setConstraints(flightDepartureTime, con);
 				northPanel.add(flightDepartureTime);
 
 				flightAirline.setText(flights.get(i).getAirlineName());
 				flightAirline.setFont(flightFont);
-				con.gridx = 2;
+				con.gridx = 10;
 				m.setConstraints(flightAirline, con);
 				northPanel.add(flightAirline);
 
 				flightTerminal.setText(String.valueOf(flights.get(i).getTerminal()));
 				flightTerminal.setFont(flightFont);
-				con.gridx = 3;
+				con.gridx = 15;
 				m.setConstraints(flightTerminal, con);
 				northPanel.add(flightTerminal);
 			}
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (IndexOutOfBoundsException e) {
 			for (int i = 0; i < flights.size(); i++) {
 				JLabel flightDestination = new JLabel();
 				JLabel flightDepartureTime = new JLabel();
@@ -113,7 +113,7 @@ public class NorthPanel extends JPanel {
 				flightDepartureTime.setOpaque(true);
 				flightAirline.setOpaque(true);
 				flightTerminal.setOpaque(true);
-				if((i&1) == 0){
+				if ((i & 1) == 0) {
 					flightDestination.setBackground(Color.lightGray);
 					flightDepartureTime.setBackground(Color.lightGray);
 					flightAirline.setBackground(Color.lightGray);
@@ -129,115 +129,122 @@ public class NorthPanel extends JPanel {
 
 				flightDepartureTime.setText(flights.get(i).getProbableFlightTime());
 				flightDepartureTime.setFont(flightFont);
-				con.gridx = 1;
+				con.gridx = 5;
 				m.setConstraints(flightDepartureTime, con);
 				northPanel.add(flightDepartureTime);
 
 				flightAirline.setText(flights.get(i).getAirlineName());
 				flightAirline.setFont(flightFont);
-				con.gridx = 2;
+				con.gridx = 10;
 				m.setConstraints(flightAirline, con);
 				northPanel.add(flightAirline);
 
 				flightTerminal.setText(String.valueOf(flights.get(i).getTerminal()));
 				flightTerminal.setFont(flightFont);
-				con.gridx = 3;
+				con.gridx = 15;
 				m.setConstraints(flightTerminal, con);
 				northPanel.add(flightTerminal);
 			}
 		}
-		///////////////////////////////////// VƒNSTER PANEL ///////////////////////////////////// 
-		try {
-			JPanel blackSeparator = new JPanel();
-			blackSeparator.setOpaque(true);
-			blackSeparator.setBackground(Color.black);
-			con.gridx = 4; con.gridy = 0;
-			m.setConstraints(blackSeparator, con);
-			northPanel.add(blackSeparator);
-			
-			destination = new JLabel("Destination");
-			destination.setFont(bigLabelFont);
+		///////////////////////////////////// VÔøΩNSTER PANEL /////////////////////////////////////
 
-			departureTime = new JLabel("AvgÂng");
-			departureTime.setFont(bigLabelFont);
-
-			airline = new JLabel("Flygbolag");
-			airline.setFont(bigLabelFont);
-
-			terminal = new JLabel("Terminal");
-			terminal.setFont(bigLabelFont);
-
-			con.weightx = 1;
-			con.gridy = 0;
-			con.gridx = 5;
-			con.gridheight = 2;
-			m.setConstraints(destination, con);
-			northPanel.add(destination);
-
-			con.gridx = 6;
-			m.setConstraints(departureTime, con);
-			northPanel.add(departureTime);
-
-			con.gridx = 7;
-			m.setConstraints(airline, con);
-			northPanel.add(airline);
-
-			con.gridx = 8;
-			m.setConstraints(terminal, con);
-			northPanel.add(terminal);
-
-			con.gridheight = 1;
-			con.weighty = 1;
-			for (int i = 30; i < 60; i++) {
-				blackSeparator = new JPanel();
+		if (flights.size() > 30) {
+			try {
+				JPanel blackSeparator = new JPanel();
 				blackSeparator.setOpaque(true);
 				blackSeparator.setBackground(Color.black);
-				con.gridx = 4; con.gridy = i-28;
+				con.gridx = 16;
+				con.gridy = 0;
+				con.weightx = 0;
 				m.setConstraints(blackSeparator, con);
 				northPanel.add(blackSeparator);
-				
-				JLabel flightDestination = new JLabel();
-				JLabel flightDepartureTime = new JLabel();
-				JLabel flightAirline = new JLabel();
-				JLabel flightTerminal = new JLabel();
-				flightDestination.setOpaque(true);
-				flightDepartureTime.setOpaque(true);
-				flightAirline.setOpaque(true);
-				flightTerminal.setOpaque(true);
-				if((i&1) == 0){
-					Color customColor = new Color(148, 148, 184);
-					flightDestination.setBackground(customColor);
-					flightDepartureTime.setBackground(customColor);
-					flightAirline.setBackground(customColor);
-					flightTerminal.setBackground(customColor);
+
+				destination = new JLabel("Destination");
+				destination.setFont(bigLabelFont);
+
+				departureTime = new JLabel("Avg√•ng");
+				departureTime.setFont(bigLabelFont);
+
+				airline = new JLabel("Flygbolag");
+				airline.setFont(bigLabelFont);
+
+				terminal = new JLabel("Terminal");
+				terminal.setFont(bigLabelFont);
+
+				con.weightx = 1;
+				con.gridy = 0;
+				con.gridx = 17;
+				con.gridheight = 2;
+				m.setConstraints(destination, con);
+				northPanel.add(destination);
+
+				con.gridx = 22;
+				m.setConstraints(departureTime, con);
+				northPanel.add(departureTime);
+
+				con.gridx = 27;
+				m.setConstraints(airline, con);
+				northPanel.add(airline);
+
+				con.gridx = 32;
+				m.setConstraints(terminal, con);
+				northPanel.add(terminal);
+
+				con.gridheight = 1;
+				con.weighty = 1;
+				for (int i = 30; i < 60; i++) {
+					blackSeparator = new JPanel();
+					blackSeparator.setOpaque(true);
+					blackSeparator.setBackground(Color.black);
+					con.gridx = 16;
+					con.gridy = i - 28;
+					m.setConstraints(blackSeparator, con);
+					northPanel.add(blackSeparator);
+
+					JLabel flightDestination = new JLabel();
+					JLabel flightDepartureTime = new JLabel();
+					JLabel flightAirline = new JLabel();
+					JLabel flightTerminal = new JLabel();
+					flightDestination.setOpaque(true);
+					flightDepartureTime.setOpaque(true);
+					flightAirline.setOpaque(true);
+					flightTerminal.setOpaque(true);
+					if ((i & 1) == 0) {
+						Color customColor = new Color(148, 148, 184);
+						flightDestination.setBackground(customColor);
+						flightDepartureTime.setBackground(customColor);
+						flightAirline.setBackground(customColor);
+						flightTerminal.setBackground(customColor);
+					}
+
+					flightDestination.setText(flights.get(i).getArrivalDestination());
+					flightDestination.setFont(flightFont);
+					con.gridy = i - 28;
+					con.gridx = 17;
+					m.setConstraints(flightDestination, con);
+					northPanel.add(flightDestination);
+
+					flightDepartureTime.setText(flights.get(i).getProbableFlightTime());
+					flightDepartureTime.setFont(flightFont);
+					con.gridx = 22;
+					m.setConstraints(flightDepartureTime, con);
+					northPanel.add(flightDepartureTime);
+
+					flightAirline.setText(flights.get(i).getAirlineName());
+					flightAirline.setFont(flightFont);
+					con.gridx = 27;
+					m.setConstraints(flightAirline, con);
+					northPanel.add(flightAirline);
+
+					flightTerminal.setText(String.valueOf(flights.get(i).getTerminal()));
+					flightTerminal.setFont(flightFont);
+					con.gridx = 32;
+					m.setConstraints(flightTerminal, con);
+					northPanel.add(flightTerminal);
 				}
-
-				flightDestination.setText(flights.get(i).getArrivalDestination());
-				flightDestination.setFont(flightFont);
-				con.gridy = i - 28;
-				con.gridx = 5;
-				m.setConstraints(flightDestination, con);
-				northPanel.add(flightDestination);
-
-				flightDepartureTime.setText(flights.get(i).getProbableFlightTime());
-				flightDepartureTime.setFont(flightFont);
-				con.gridx = 6;
-				m.setConstraints(flightDepartureTime, con);
-				northPanel.add(flightDepartureTime);
-
-				flightAirline.setText(flights.get(i).getAirlineName());
-				flightAirline.setFont(flightFont);
-				con.gridx = 7;
-				m.setConstraints(flightAirline, con);
-				northPanel.add(flightAirline);
-
-				flightTerminal.setText(String.valueOf(flights.get(i).getTerminal()));
-				flightTerminal.setFont(flightFont);
-				con.gridx = 8;
-				m.setConstraints(flightTerminal, con);
-				northPanel.add(flightTerminal);
+			} catch (IndexOutOfBoundsException e) {
 			}
-		} catch (ArrayIndexOutOfBoundsException e) {
+
 		}
 
 	}
