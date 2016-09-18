@@ -21,8 +21,8 @@ public class NorthPanel extends JPanel {
 		GridBagLayout m = new GridBagLayout();
 		northPanel.setLayout(m);
 		GridBagConstraints con;
-		Font bigLabelFont = new Font("Serif", Font.BOLD, 50);
-		Font flightFont = new Font("Arial", Font.PLAIN, 35);
+		Font bigLabelFont = new Font("Serif", Font.BOLD, 25);
+		Font flightFont = new Font("Arial", Font.PLAIN, 15);
 
 		destination = new JLabel("Destination");
 		destination.setFont(bigLabelFont);
